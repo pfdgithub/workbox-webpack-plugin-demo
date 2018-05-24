@@ -17,7 +17,7 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist', 'index.html')
     }),
     new WorkboxPlugin.GenerateSW({
-      // swDest: path.resolve(__dirname, 'dist', 'service-worker.js')
+      swDest: path.resolve(__dirname, 'dist', 'service-worker.js')
     })
   ]
 };
