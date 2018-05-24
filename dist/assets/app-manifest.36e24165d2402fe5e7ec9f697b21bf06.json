@@ -1,0 +1,14 @@
+{
+  "icons": [
+    {
+      "src": "/assets/icon_512x512.b3439eb3160219d7c47744dc2872a86c.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "App",
+  "short_name": "App",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "."
+}

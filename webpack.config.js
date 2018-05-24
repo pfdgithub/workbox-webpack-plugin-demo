@@ -1,6 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+
+const assetsDir = 'assets';
+const dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
   mode: 'development',
@@ -8,16 +12,26 @@ module.exports = {
     index: './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist', 'assets'),
-    filename: '[name].[chunkhash].js',
-    publicPath: '/assets/',
+    path: dist,
+    publicPath: '/',
+    filename: `${assetsDir}/[name].[chunkhash].js`
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, 'dist', 'index.html')
+      filename: 'index.html'
+    }),
+    new WebpackPwaManifest({
+      includeDirectory: true,
+      filename: `${assetsDir}/app-manifest.[hash].json`,
+      icons: [{
+        ios: true,
+        sizes: [512],
+        destination: assetsDir,
+        src: './src/logo.png'
+      }]
     }),
     new WorkboxPlugin.GenerateSW({
-      swDest: path.resolve(__dirname, 'dist', 'service-worker.js')
+      swDest: 'service-worker.js'
     })
   ]
 };
